@@ -1,4 +1,4 @@
-# easy-params
+# easy-params [![Build Status](https://travis-ci.org/tuvistavie/node-easy-params.svg?branch=master)](https://travis-ci.org/tuvistavie/node-easy-params)
 
 ```sh
 $ npm install easy-params
