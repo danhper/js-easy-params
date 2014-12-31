@@ -1,7 +1,7 @@
 {
   "name": "easy-params",
   "version": "0.1.0",
-  "description": "Simple decorator for functions with optional arguments",
+  "description": "Decorator for functions with optional arguments",
   "main": "easy-params.js",
   "scripts": {
     "test": "mocha easy-params-test.js"
