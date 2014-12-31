@@ -1,0 +1,26 @@
+{
+  "name": "easy-params",
+  "version": "0.1.0",
+  "description": "Simple decorator for functions with optional arguments",
+  "main": "easy-params.js",
+  "scripts": {
+    "test": "mocha easy-params-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuvistavie/node-easy-params.git"
+  },
+  "keywords": [
+    "git"
+  ],
+  "author": "Daniel Perez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tuvistavie/node-easy-params/issues"
+  },
+  "homepage": "https://github.com/tuvistavie/node-easy-params",
+  "devDependencies": {
+    "chai": "^1.10.0"
+  },
+  "dependencies": {}
+}

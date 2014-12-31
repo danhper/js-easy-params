@@ -1,0 +1,42 @@
+# easy-params
+
+```sh
+$ npm install easy-params
+```
+
+When writing Javascript, especially with NodeJS I found myself
+often writing things like this (taken from [this Gist](https://gist.github.com/klovadis/2549131))
+
+```javascript
+// example function where arguments 2 and 3 are optional
+var example = function(err, optionalA, optionalB, callback) {
+  var args = [];
+  for (var i = 0; i < arguments.length; i++) {
+      args.push(arguments[i]);
+  }
+  err = args.shift();
+  callback = args.pop();
+  if (args.length > 0) optionalA = args.shift(); else optionalA = 'default';
+  if (args.length > 0) optionalB = args.shift(); else optionalB = null;
+
+  // use your arguments
+}
+```
+
+to check for optional arguments. It is neither clean, nor easy to understand,
+and it is quite a pain to write it all the time,
+so I wrote this little decorator to avoid writing the same thing all the time.
+
+The above example then becomes:
+
+```javascript
+var wrapIt = require('easy-params');
+
+var example = wrapIt(1, 'default', null, function(err, optionalA, optionalB, callback) {
+  // use your arguments
+});
+```
+
+The first parameter is the number of required arguments, and the last
+parameter is the function to wrap. All the parameters in between are the
+default values for the optional paremeters.
