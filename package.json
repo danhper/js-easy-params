@@ -1,6 +1,6 @@
 {
   "name": "easy-params",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Decorator for functions with optional arguments",
   "main": "easy-params.js",
   "scripts": {
@@ -11,7 +11,9 @@
     "url": "https://github.com/tuvistavie/node-easy-params.git"
   },
   "keywords": [
-    "git"
+    "function",
+    "decorator",
+    "optional parameters"
   ],
   "author": "Daniel Perez",
   "license": "MIT",
