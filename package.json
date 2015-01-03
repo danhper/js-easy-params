@@ -1,6 +1,6 @@
 {
   "name": "easy-params",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Decorator for functions with optional arguments",
   "main": "easy-params.js",
   "scripts": {
