@@ -1,39 +1,47 @@
-module.exports = function () {
-  var baseArgs = [];
-  baseArgs.push.apply(baseArgs, arguments);
-  var requiredArgsCount = baseArgs.shift();
-  var callee = baseArgs.pop();
+(function () {
+  function easyParams() {
+    var baseArgs = [];
+    baseArgs.push.apply(baseArgs, arguments);
+    var requiredArgsCount = baseArgs.shift();
+    var callee = baseArgs.pop();
 
-  return function () {
-    if (arguments.length < requiredArgsCount) {
-      return callee.apply(this, arguments);
-    }
-
-    var i;
-    var args = [];
-    args.push.apply(args, arguments);
-
-    var calleeArgs = [];
-    var cb = null;
-
-    if (typeof args[args.length - 1] === 'function') {
-      cb = args.pop();
-    }
-
-    for (i = 0; i < requiredArgsCount; i++) {
-      calleeArgs.push(args.shift());
-    }
-
-    for (i = 0; i < baseArgs.length; i++) {
-      if (args[i]) {
-        calleeArgs.push(args[i]);
-      } else {
-        calleeArgs.push(baseArgs[i]);
+    return function () {
+      if (arguments.length < requiredArgsCount) {
+        return callee.apply(this, arguments);
       }
-    }
 
-    calleeArgs.push(cb);
+      var i;
+      var args = [];
+      args.push.apply(args, arguments);
 
-    return callee.apply(this, calleeArgs);
-  };
-};
+      var calleeArgs = [];
+      var cb = null;
+
+      if (typeof args[args.length - 1] === 'function') {
+        cb = args.pop();
+      }
+
+      for (i = 0; i < requiredArgsCount; i++) {
+        calleeArgs.push(args.shift());
+      }
+
+      for (i = 0; i < baseArgs.length; i++) {
+        if (args[i]) {
+          calleeArgs.push(args[i]);
+        } else {
+          calleeArgs.push(baseArgs[i]);
+        }
+      }
+
+      calleeArgs.push(cb);
+
+      return callee.apply(this, calleeArgs);
+    };
+  }
+
+  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = easyParams;
+  } else {
+    window.easyParams = easyParams;
+  }
+}());
