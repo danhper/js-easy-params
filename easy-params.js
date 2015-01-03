@@ -5,7 +5,7 @@ module.exports = function () {
   var callee = baseArgs.pop();
 
   return function () {
-    if (arguments.length < requiredArgsCount + 1) {
+    if (arguments.length < requiredArgsCount) {
       return callee.apply(this, arguments);
     }
 
@@ -14,7 +14,11 @@ module.exports = function () {
     args.push.apply(args, arguments);
 
     var calleeArgs = [];
-    var cb = args.pop();
+    var cb = null;
+
+    if (typeof args[args.length - 1] === 'function') {
+      cb = args.pop();
+    }
 
     for (i = 0; i < requiredArgsCount; i++) {
       calleeArgs.push(args.shift());

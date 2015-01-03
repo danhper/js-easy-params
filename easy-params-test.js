@@ -63,7 +63,6 @@ describe('easy-params', function () {
 
   it('should call function normally when required arguments not provided', function () {
     var base = function (req1, req2, opt1, cb) {
-      expect(cb).to.be.undefined;
       return req1;
     };
     var f = wrapIt(2, 'default', base);
