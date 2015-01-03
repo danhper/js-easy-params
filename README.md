@@ -1,9 +1,18 @@
 # easy-params [![Build Status](https://travis-ci.org/tuvistavie/node-easy-params.svg?branch=master)](https://travis-ci.org/tuvistavie/node-easy-params)
 
 Decorator to easily write functions with optional arguments.
+It works with both browsers and NodeJS.
+
+With `npm`:
 
 ```sh
 $ npm install easy-params
+```
+
+With `bower`:
+
+```sh
+$ bower install easy-params
 ```
 
 When writing Javascript, especially with NodeJS I found myself
