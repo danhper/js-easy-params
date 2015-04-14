@@ -1,4 +1,19 @@
 (function () {
+  function clone(obj) {
+    var type = typeof obj;
+    if (!(type === 'function' || type === 'object' && !!obj)) {
+        return obj;
+    }
+
+    var temp = obj.constructor();
+    for (var key in obj) {
+      temp[key] = clone(obj[key]);
+    }
+
+    return temp;
+  };
+
+
   function easyParams() {
     var baseArgs = [];
     baseArgs.push.apply(baseArgs, arguments);
@@ -25,11 +40,12 @@
         decoratedArgs.push(args.shift());
       }
 
-      for (i = 0; i < baseArgs.length; i++) {
+      var l = baseArgs.length;
+      for (i = 0; i < l; i++) {
         if (args[i]) {
           decoratedArgs.push(args[i]);
         } else {
-          decoratedArgs.push(baseArgs[i]);
+          decoratedArgs.push(clone(baseArgs[i]));
         }
       }
 

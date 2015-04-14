@@ -70,4 +70,19 @@ describe('easy-params', function () {
     expect(f(dummyFunc)).to.be.a('function');
     expect(f(1, dummyFunc)).to.eq(1);
   });
+
+  it('should not share default values across calls', function () {
+    var base = function (req1, opt1, opt2, cb) {
+      opt1[req1] = 'ok';
+      opt2.push('ok');
+      return cb(opt1, opt2);
+    };
+    var opt1 = {foo: 'ok'};
+    var opt2 = ['ok'];
+    var f = wrapIt(1, opt1, opt2, base);
+
+    expect(f('bar', dummyFunc)).to.eql([{foo: 'ok', bar: 'ok'}, ['ok', 'ok']]);
+    expect(opt1).to.eql({foo: 'ok'});
+    expect(opt2).to.eql(['ok']);
+  });
 });
