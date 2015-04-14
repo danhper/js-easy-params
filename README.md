@@ -1,4 +1,4 @@
-# easy-params [![Build Status](https://travis-ci.org/tuvistavie/node-easy-params.svg?branch=master)](https://travis-ci.org/tuvistavie/node-easy-params)
+# easy-params [![Build Status](https://travis-ci.org/tuvistavie/js-easy-params.svg?branch=v0.1.5)](https://travis-ci.org/tuvistavie/js-easy-params)
 
 Decorator to easily write functions with optional arguments.
 It works with both browsers and NodeJS.
