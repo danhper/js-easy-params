@@ -1,4 +1,15 @@
 (function () {
+  var makeGenerator;
+
+  (function () {
+    /* jshint evil:true */
+    try {
+      eval("(function *(){})");
+      makeGenerator = require('./easy-params-generators');
+    } catch(e) {}
+  })();
+
+
   function clone(obj) {
     var type = typeof obj;
     if (!(type === 'function' || type === 'object' && !!obj)) {
@@ -11,23 +22,21 @@
     }
 
     return temp;
-  };
+  }
 
 
   function easyParams() {
-    var baseArgs = [];
-    baseArgs.push.apply(baseArgs, arguments);
+    var baseArgs = [].slice.apply(arguments);
     var requiredArgsCount = baseArgs.shift();
     var decorated = baseArgs.pop();
 
-    return function () {
+    function transformArguments() {
       if (arguments.length < requiredArgsCount) {
-        return decorated.apply(this, arguments);
+        return arguments;
       }
 
       var i;
-      var args = [];
-      args.push.apply(args, arguments);
+      var args = [].slice.apply(arguments);
 
       var decoratedArgs = [];
       var cb = null;
@@ -50,9 +59,17 @@
       }
 
       decoratedArgs.push(cb);
+      return decoratedArgs;
+    }
 
-      return decorated.apply(this, decoratedArgs);
-    };
+    if (decorated.constructor.name === 'GeneratorFunction') {
+      return makeGenerator(transformArguments, decorated);
+    } else {
+      return function () {
+        var args = transformArguments.apply(this, arguments);
+        return decorated.apply(this, args);
+      };
+    }
   }
 
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {

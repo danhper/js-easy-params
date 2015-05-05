@@ -1,10 +1,10 @@
 {
   "name": "easy-params",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Decorator for functions with optional arguments",
   "main": "easy-params.js",
   "scripts": {
-    "test": "mocha easy-params-test.js"
+    "test": "mocha easy-params-test.js && mocha --harmony easy-params-generators-test.js"
   },
   "repository": {
     "type": "git",

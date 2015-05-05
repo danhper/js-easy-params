@@ -41,9 +41,9 @@ so I wrote this little decorator to avoid writing the same thing all the time.
 The above example then becomes:
 
 ```javascript
-var wrapIt = require('easy-params');
+var withDefaults = require('easy-params');
 
-var example = wrapIt(1, 'default', null, function(err, optionalA, optionalB, callback) {
+var example = withDefaults(1, 'default', null, function (err, optionalA, optionalB, callback) {
   // use your arguments
 });
 ```
@@ -51,3 +51,16 @@ var example = wrapIt(1, 'default', null, function(err, optionalA, optionalB, cal
 The first parameter is the number of required arguments, and the last
 parameter is the function to wrap. All the parameters in between are the
 default values for the optional paremeters.
+
+ECMA6 generators functions are also supported when available, so you
+can write somehting like:
+
+```javascript
+var withDefaults = require('easy-params');
+
+var example = withDefaults(1, 'default', null, function *(req, optionalA, optionalB) {
+  // use your arguments
+});
+```
+
+and it will return a generator function with the arguments you need.
